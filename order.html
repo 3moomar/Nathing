@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>طلب المنتج</title>
+</head>
+<body>
+
+  <header>
+    <a href="index.html">← العودة للرئيسية</a>
+    <h1>طلب المنتج</h1>
+  </header>
+
+  <main>
+    <form onsubmit="submitOrder(event)">
+      <label>اسمك:</label><br>
+      <input type="text" required><br><br>
+
+      <label>رقم الهاتف:</label><br>
+      <input type="tel" required placeholder="+973 3333 4444"><br><br>
+
+      <label>نوع المنتج:</label><br>
+      <input type="text" readonly value="منتج تجريبي"><br><br>
+
+      <button type="submit" class="btn">إرسال الطلب</button>
+    </form>
+
+    <p id="success-message"></p>
+  </main>
+
+  <script>
+    function submitOrder(e) {
+      e.preventDefault();
+      alert("شكراً لك! سيتم التواصل معك قريبًا.");
+      document.getElementById("success-message").innerText = "تم استلام طلبك، سنقوم بالاتصال بك قريبًا.";
+    }
+  </script>
+
+</body>
+</html>

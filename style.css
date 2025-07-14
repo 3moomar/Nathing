@@ -1,0 +1,39 @@
+:root {
+  --primary: #6d28d9;
+  --secondary: #f59e0b;
+  --dark: #1e293b;
+  --light: #f8fafc;
+}
+
+/* إعادة تعيين أساسي */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html[dir="rtl"] {
+  text-align: right;
+}
+
+body {
+  font-family: 'Tajawal', Arial, sans-serif;
+  background: var(--light);
+  color: var(--dark);
+}
+
+/* تحسينات الشبكة */
+.products-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(280px, 1fr))[auto-fill];
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  margin: 1rem;
+}
+
+@media (max-width: 768px) {
+  .products-grid {
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+  }
+}

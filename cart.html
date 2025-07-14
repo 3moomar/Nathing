@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>عربة التسوق</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* CSS من ملف index.html مع إضافات */
+    .cart-item {
+      display: flex;
+      gap: 20px;
+      padding: 15px;
+      background: white;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .cart-summary {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>عربة التسوق</h1>
+    <a href="index.html"><i class="fas fa-arrow-left"></i> العودة</a>
+  </header>
+
+  <main id="cart-container">
+    <div id="cart-items">
+      <!-- يتم تعبئتها بالجافاسكريبت -->
+    </div>
+
+    <div class="cart-summary">
+      <h3><i class="fas fa-receipt"></i> ملخص الطلب</h3>
+      <p id="total-price">الإجمالي: 0 دينار</p>
+      <a href="checkout.html" class="btn btn-block">
+        <i class="fas fa-credit-card"></i> اتمام الشراء
+      </a>
+    </div>
+  </main>
+
+  <script src="products.js"></script>
+  <script>
+    function renderCart() {
+      const container = document.getElementById('cart-items');
+      const totalEl = document.getElementById('total-price');
+      
+      if (!cart.length) {
+        container.innerHTML = '<p class="empty">سلة التسوق فارغة</p>';
+        totalEl.textContent = 'الإجمالي: 0 دينار';
+        return;
+      }
+
+      let total = 0;
+      container.innerHTML = cart.map(item => {
+        const price = parseFloat(item.price.split(' ')[0]);
+        const itemTotal = price * (item.quantity || 1);
+        total += itemTotal;
+        
+        return `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}" width="80">
+            <div>
+              <h3>${item.name}</h3>
+              <p>${item.price}</p>
+              <div class="quantity-controls">
+                <button onclick="updateQuantity(${item.id}, -1)">-</button>
+                <span>${item.quantity || 1}</span>
+                <button onclick="updateQuantity(${item.id}, 1)">+</button>
+              </div>
+              <button onclick="removeItem(${item.id})" class="remove-btn">
+                <i class="fas fa-trash"></i> إزالة
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      totalEl.textContent = `الإجمالي: ${total.toFixed(2)} دينار`;
+    }
+
+    function updateQuantity(productId, change) {
+      const item = cart.find(item => item.id === productId);
+      if (item) {
+        item.quantity = (item.quantity || 1) + change;
+        if (item.quantity < 1) removeItem(productId);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+        updateCartCount();
+      }
+    }
+
+    function removeItem(productId) {
+      cart = cart.filter(item => item.id !== productId);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+      updateCartCount();
+    }
+
+    window.onload = renderCart;
+  </script>
+</body>
+</html>
