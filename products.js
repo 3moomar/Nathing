@@ -5,7 +5,7 @@ const products = [
     name: "ساعة ذكية ذهبية",
     price: "12.5 دينار بحريني",
     description: "ساعة ذكية مزودة بمواصفات عالية الجودة مع شاشة AMOLED.",
-    image: "images/watch.jpg",
+    image: "watch.jpg",
     rating: 4.5
   },
   {
@@ -13,7 +13,7 @@ const products = [
     name: "abdoly",
     price: "3.530 دينار بحريني",
     description: "كائن فرهود عايز يتحرك 24 ساعة",
-    image: "images/عبدالله للبيع.jpg",
+    image: "عبدالله للبيع.jpg",
     rating: 1.5
   },
    {
@@ -21,7 +21,7 @@ const products = [
     name: "marwan palo",
     price: "3.530 دينار بحريني",
     description: "لو قلت له عامل ايه هيقولك ابويا مش موافق",
-    image: "images/مروان للبيع.jpg",
+    image: "مروان للبيع.jpg",
     rating: 1.5
   },
    {
@@ -29,7 +29,7 @@ const products = [
     name: "abdoly&marwan palo",
     price: "6.650 دينار بحريني",
     description: "عرص خاص ل فترة محدودة",
-    image: "images/مروان وعبدالله للبيع.jpg",
+    image: "مروان وعبدالله للبيع.jpg",
     rating: 2.5
   },
   // ... باقي المنتجات
